@@ -153,6 +153,22 @@ class StyleTest {
     }
 
     @Test
+    void allowedTagsCannotClickHoverOrBreakOutOfTheStyle() throws Exception {
+        Style style = library(StyleKind.CHAT, "styles:\n  red:\n    format: '<red>{text}</red> after'\n").get("red");
+
+        Component component = style.render("<click:run_command:/op me>hi</click></red><hover:show_text:'x'>yo", true);
+
+        assertFalse(hasInteraction(component));
+        assertTrue(plain(component).endsWith(" after"));
+        assertEquals("hi after", plain(style.render("<green>hi</green>", true)));
+    }
+
+    private static boolean hasInteraction(Component component) {
+        if (component.clickEvent() != null || component.hoverEvent() != null || component.insertion() != null) return true;
+        return component.children().stream().anyMatch(StyleTest::hasInteraction);
+    }
+
+    @Test
     void gradientAndObfuscatedTemplatesKeepTheText() throws Exception {
         Style style = library(StyleKind.CHAT,
                 "styles:\n  glitch:\n    format: '<gradient:#00ffff:#ff00ff><obfuscated>||</obfuscated> {text} <obfuscated>||</obfuscated></gradient>'\n").get("glitch");

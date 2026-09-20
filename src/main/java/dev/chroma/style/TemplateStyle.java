@@ -1,6 +1,8 @@
 package dev.chroma.style;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 
@@ -11,6 +13,17 @@ import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 public final class TemplateStyle extends Style {
 
     private static final String TAG = "chroma_text";
+
+    /**
+     * What a player may write in chat when colour codes are allowed: colours, decorations, gradients and rainbows,
+     * and nothing that clicks, hovers, inserts text or reads the server.
+     */
+    private static final MiniMessage SAFE = MiniMessage.builder()
+            .tags(net.kyori.adventure.text.minimessage.tag.resolver.TagResolver.builder()
+                    .resolvers(StandardTags.color(), StandardTags.decorations(), StandardTags.gradient(),
+                            StandardTags.rainbow(), StandardTags.reset())
+                    .build())
+            .build();
 
     private final String template;
 
@@ -31,7 +44,7 @@ public final class TemplateStyle extends Style {
 
     @Override
     public Component render(String text, boolean allowTags) {
-        TagResolver value = allowTags ? Placeholder.parsed(TAG, text) : Placeholder.unparsed(TAG, text);
+        TagResolver value = allowTags ? Placeholder.component(TAG, SAFE.deserialize(text)) : Placeholder.unparsed(TAG, text);
         return MINI.deserialize(template.replace("{name}", "<" + TAG + ">"), value);
     }
 
