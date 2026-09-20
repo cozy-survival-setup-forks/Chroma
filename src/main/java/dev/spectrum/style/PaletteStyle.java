@@ -5,7 +5,6 @@ import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -54,24 +53,5 @@ public final class PaletteStyle extends Style {
             builder.append(Component.text(run.text(), run.color()));
         }
         return builder.build();
-    }
-
-    @Override
-    public String miniMessage(String text) {
-        List<String> open = new ArrayList<>();
-        if (decorations.bold()) open.add("bold");
-        if (decorations.italic()) open.add("italic");
-        if (decorations.underlined()) open.add("underlined");
-        if (decorations.strikethrough()) open.add("strikethrough");
-        if (decorations.obfuscated()) open.add("obfuscated");
-
-        StringBuilder out = new StringBuilder();
-        for (String tag : open) out.append('<').append(tag).append('>');
-        for (Palette.Run run : runs(text, ThreadLocalRandom.current())) {
-            String hex = run.color().asHexString();
-            out.append('<').append(hex).append('>').append(MINI.escapeTags(run.text())).append("</").append(hex).append('>');
-        }
-        for (int i = open.size() - 1; i >= 0; i--) out.append("</").append(open.get(i)).append('>');
-        return out.toString();
     }
 }

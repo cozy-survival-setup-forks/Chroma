@@ -1,7 +1,6 @@
 package dev.spectrum.style;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.junit.jupiter.api.Test;
@@ -165,7 +164,7 @@ class StyleTest {
                 "styles:\n  glitch:\n    format: '<gradient:#00ffff:#ff00ff><obfuscated>||</obfuscated> {text} <obfuscated>||</obfuscated></gradient>'\n").get("glitch");
 
         assertEquals("|| hello ||", plain(style.render("hello")));
-        assertTrue(style.legacy("hello").contains("§k"));
+        assertTrue(style.ampersand("hello").contains("&k"));
     }
 
     @Test
@@ -174,31 +173,7 @@ class StyleTest {
 
         assertEquals("Steve", plain(style.render("Steve")));
         assertEquals("<red>x", plain(style.render("<red>x", true)));
-        assertTrue(style.legacy("Steve").contains("§l"));
-    }
-
-    @Test
-    void miniMessageOutputRoundTrips() throws Exception {
-        Style palette = library(StyleKind.NAME, "styles:\n  ocean:\n    mode: GRADIENT\n    colors: ['#0000ff', '#00ffff']\n    bold: true\n").get("ocean");
-        Style template = library(StyleKind.NAME, "styles:\n  glitch:\n    format: '<gradient:#00ffff:#ff00ff><obfuscated>|</obfuscated>{name}</gradient>'\n").get("glitch");
-
-        for (Style style : new Style[]{palette, template}) {
-            String mini = style.miniMessage("Steve <3");
-            assertEquals(plain(style.render("Steve <3")), plain(MiniMessage.miniMessage().deserialize(mini)), mini);
-        }
-    }
-
-    @Test
-    void miniMessageOutputClosesWhatItOpens() throws Exception {
-        Style palette = library(StyleKind.NAME, "styles:\n  ocean:\n    mode: GRADIENT\n    colors: ['#0000ff', '#00ffff']\n    bold: true\n").get("ocean");
-
-        Component followedByText = MiniMessage.miniMessage().deserialize(palette.miniMessage("Steve") + " says hi");
-
-        // The words after the name are not bold and not coloured.
-        Component last = followedByText.children().get(followedByText.children().size() - 1);
-        assertEquals(" says hi", plain(last));
-        assertNull(last.color());
-        assertEquals(net.kyori.adventure.text.format.TextDecoration.State.NOT_SET, last.decoration(net.kyori.adventure.text.format.TextDecoration.BOLD));
+        assertTrue(style.ampersand("Steve").contains("&l"));
     }
 
     @Test

@@ -12,8 +12,6 @@ public abstract sealed class Style permits TemplateStyle, PaletteStyle {
 
     protected static final MiniMessage MINI = MiniMessage.miniMessage();
 
-    private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.builder()
-            .character(LegacyComponentSerializer.SECTION_CHAR).hexColors().useUnusualXRepeatedCharacterHexFormat().build();
     private static final LegacyComponentSerializer AMPERSAND = LegacyComponentSerializer.builder()
             .character(LegacyComponentSerializer.AMPERSAND_CHAR).hexColors().build();
 
@@ -53,9 +51,6 @@ public abstract sealed class Style permits TemplateStyle, PaletteStyle {
      */
     public abstract Component render(String text, boolean allowTags);
 
-    /** The text coloured with this style, written as MiniMessage. Tags in the text itself are escaped. */
-    public abstract String miniMessage(String text);
-
     public Component render(String text) {
         return render(text, false);
     }
@@ -63,11 +58,6 @@ public abstract sealed class Style permits TemplateStyle, PaletteStyle {
     /** The name of the style, coloured. */
     public Component displayComponent() {
         return render(display);
-    }
-
-    /** The text with § colour codes, for plugins that do not know MiniMessage. */
-    public String legacy(String text) {
-        return LEGACY.serialize(render(text));
     }
 
     /** The text with &amp;#rrggbb colour codes, which most menu plugins understand. */

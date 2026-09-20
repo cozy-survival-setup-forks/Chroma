@@ -58,14 +58,17 @@ Set `use-permissions: false` in `config.yml` to let everybody use every style.
 
 ## Placeholders (PlaceholderAPI)
 
-Names, for a chat, tab or scoreboard plugin: `%spectrum_name%` (MiniMessage), `%spectrum_name_legacy%` (`§` codes),
-`%spectrum_name_amp%` (`&#rrggbb`). A player without a gradient just gets their plain name.
+Every placeholder gives colours as `&#rrggbb` codes, which DeluxeMenus and most chat, tab and scoreboard plugins understand.
 
-For menus, replace `<kind>` with `chat` or `name`:
+**Chat colours** need no placeholder: a player's message is coloured as it is sent, whatever chat plugin you use.
+
+**Name gradients** are not applied by Spectrum itself. Put `%spectrum_name%` where the name should go in your chat, tab or scoreboard plugin. A player without a gradient just gets their plain name.
+
+**For menus**, replace `<kind>` with `chat` or `name`:
 
 - `%spectrum_<kind>_id%` and `%spectrum_<kind>_display%`: what the player has equipped
 - `%spectrum_<kind>_equipped_<id>%` and `%spectrum_<kind>_owned_<id>%`: `true` or `false`
-- `%spectrum_<kind>_preview_<id>%`, `..._preview_legacy_<id>%`, `..._preview_amp_<id>%`: a preview of a style
+- `%spectrum_<kind>_preview_<id>%`: a preview of a style, using the player's name for `name` and the sample text from `config.yml` for `chat`
 
 ## DeluxeMenus example
 

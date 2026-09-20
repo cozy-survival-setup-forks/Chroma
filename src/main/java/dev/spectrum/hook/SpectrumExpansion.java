@@ -57,15 +57,10 @@ final class SpectrumExpansion extends PlaceholderExpansion {
         if (player == null) return "";
         String request = params.toLowerCase(Locale.ROOT);
 
-        if (request.equals("name") || request.equals("name_legacy") || request.equals("name_amp")) {
+        if (request.equals("name")) {
             String name = plugin.hooks().nameOf(player);
             Style style = plugin.styles().equipped(player, StyleKind.NAME);
-            if (style == null) return name;
-            return switch (request) {
-                case "name_legacy" -> style.legacy(name);
-                case "name_amp" -> style.ampersand(name);
-                default -> style.miniMessage(name);
-            };
+            return style == null ? name : style.ampersand(name);
         }
 
         for (StyleKind kind : StyleKind.values()) {
@@ -82,7 +77,7 @@ final class SpectrumExpansion extends PlaceholderExpansion {
                 return active == null ? "none" : active.id();
             }
             case "display" -> {
-                return active == null ? "None" : active.miniMessage(active.display());
+                return active == null ? "None" : active.ampersand(active.display());
             }
             default -> {
                 // fall through to the ones that take an id
@@ -97,9 +92,7 @@ final class SpectrumExpansion extends PlaceholderExpansion {
             Style style = plugin.styles().library(kind).get(request.substring(6));
             return String.valueOf(style != null && plugin.styles().canUse(player, style));
         }
-        if (request.startsWith("preview_legacy_")) return previewOf(kind, request.substring(15), style -> style.legacy(preview));
-        if (request.startsWith("preview_amp_")) return previewOf(kind, request.substring(12), style -> style.ampersand(preview));
-        if (request.startsWith("preview_")) return previewOf(kind, request.substring(8), style -> style.miniMessage(preview));
+        if (request.startsWith("preview_")) return previewOf(kind, request.substring(8), style -> style.ampersand(preview));
         return null;
     }
 

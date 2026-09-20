@@ -47,9 +47,4 @@ public final class TemplateStyle extends Style {
         TagResolver value = allowTags ? Placeholder.component(TAG, SAFE.deserialize(text)) : Placeholder.unparsed(TAG, text);
         return MINI.deserialize(template.replace("{name}", "<" + TAG + ">"), value);
     }
-
-    @Override
-    public String miniMessage(String text) {
-        return template.replace("{name}", MINI.escapeTags(text));
-    }
 }
