@@ -32,8 +32,7 @@ glitch:
   format: "<gradient:#00ffff:#ff00ff><obfuscated>||</obfuscated> {text} <obfuscated>||</obfuscated></gradient>"
 ```
 
-`<obfuscated>` makes the letters inside it flicker, which is what gives the glitch look. Old NameGradient files
-(`pattern:`) keep working.
+`<obfuscated>` makes the letters inside it flicker, which is what gives the glitch look.
 
 Both files come with examples: gradients, single colours, rainbow, alternating and random colours, and glitch,
 matrix, frost, lava and neon formats.
@@ -79,11 +78,6 @@ items:
     left_click_commands:
       - "[player] chatcolor equip ocean"
 ```
-
-## Moving over from NameGradient / ChatColor
-
-Selections made with NameGradient are imported automatically. Copy your old `pattern:` entries into
-`namegradients.yml`; they keep working.
 
 ## Building
 

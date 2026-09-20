@@ -57,7 +57,7 @@ public final class StyleParser {
         String permission = section.getString("permission", kind.defaultPermission());
         permission = permission.replace("{id}", id);
 
-        String format = section.getString("format", section.getString("pattern", ""));
+        String format = section.getString("format", "");
         if (!format.isBlank()) {
             if (!TemplateStyle.hasPlaceholder(format)) {
                 logger.warning(kind.fileName() + ": " + id + " has no {text} in its format, the text is added at the end.");

@@ -34,12 +34,6 @@ public final class Selections {
         Map<StyleKind, String> picked = new ConcurrentHashMap<>();
         for (StyleKind kind : StyleKind.values()) {
             String id = data.get(key(kind), PersistentDataType.STRING);
-
-            // Name gradients picked with the NameGradient plugin are taken over.
-            if (id == null && kind == StyleKind.NAME) {
-                id = data.get(new NamespacedKey("namegradient", "equipped_gradient"), PersistentDataType.STRING);
-                if (id != null) data.set(key(kind), PersistentDataType.STRING, id);
-            }
             if (id != null) picked.put(kind, id);
         }
         online.put(player.getUniqueId(), picked);

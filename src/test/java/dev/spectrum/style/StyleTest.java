@@ -58,15 +58,6 @@ class StyleTest {
     }
 
     @Test
-    void theOldNameGradientKeyStillWorks() throws Exception {
-        StyleLibrary library = library(StyleKind.NAME, "styles:\n  groovy:\n    display: groovy\n    pattern: '<reset><#ff0000>{name}'\n");
-
-        Style style = library.get("groovy");
-        assertInstanceOf(TemplateStyle.class, style);
-        assertEquals("Steve", plain(style.render("Steve")));
-    }
-
-    @Test
     void aModeWithoutColoursOrFormatIsSkipped() throws Exception {
         StyleLibrary library = library(StyleKind.CHAT, "styles:\n  broken:\n    mode: GRADIENT\n  fine:\n    colors: ['#ff0000']\n");
 
