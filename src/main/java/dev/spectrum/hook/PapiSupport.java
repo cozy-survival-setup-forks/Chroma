@@ -1,6 +1,6 @@
-package dev.chroma.hook;
+package dev.spectrum.hook;
 
-import dev.chroma.ChromaPlugin;
+import dev.spectrum.SpectrumPlugin;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 
@@ -16,7 +16,7 @@ final class PapiSupport {
         return PlaceholderAPI.setPlaceholders(player, text);
     }
 
-    static void register(ChromaPlugin plugin) {
-        new ChromaExpansion(plugin).register();
+    static void register(SpectrumPlugin plugin) {
+        new SpectrumExpansion(plugin).register();
     }
 }

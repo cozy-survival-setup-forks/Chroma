@@ -1,4 +1,4 @@
-package dev.chroma.style;
+package dev.spectrum.style;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;

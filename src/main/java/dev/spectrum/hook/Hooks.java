@@ -1,6 +1,6 @@
-package dev.chroma.hook;
+package dev.spectrum.hook;
 
-import dev.chroma.ChromaPlugin;
+import dev.spectrum.SpectrumPlugin;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -8,16 +8,16 @@ import org.bukkit.entity.Player;
 import java.util.regex.Pattern;
 
 /**
- * Optional plugins. Chroma works without them.
+ * Optional plugins. Spectrum works without them.
  */
 public final class Hooks {
 
     private static final Pattern OLD_CODES = Pattern.compile("(?i)[&§](#[0-9a-f]{6}|x(?:[&§][0-9a-f]){6}|[0-9a-fk-or])");
 
-    private final ChromaPlugin plugin;
+    private final SpectrumPlugin plugin;
     private boolean placeholderApi = false;
 
-    public Hooks(ChromaPlugin plugin) {
+    public Hooks(SpectrumPlugin plugin) {
         this.plugin = plugin;
     }
 

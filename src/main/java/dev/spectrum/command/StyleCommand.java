@@ -1,8 +1,8 @@
-package dev.chroma.command;
+package dev.spectrum.command;
 
-import dev.chroma.ChromaPlugin;
-import dev.chroma.style.Style;
-import dev.chroma.style.StyleKind;
+import dev.spectrum.SpectrumPlugin;
+import dev.spectrum.style.Style;
+import dev.spectrum.style.StyleKind;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -26,10 +26,10 @@ import java.util.Locale;
  */
 public final class StyleCommand implements TabExecutor {
 
-    private final ChromaPlugin plugin;
+    private final SpectrumPlugin plugin;
     private final StyleKind kind;
 
-    public StyleCommand(ChromaPlugin plugin, StyleKind kind) {
+    public StyleCommand(SpectrumPlugin plugin, StyleKind kind) {
         this.plugin = plugin;
         this.kind = kind;
     }
@@ -49,7 +49,7 @@ public final class StyleCommand implements TabExecutor {
 
     private Player player(CommandSender sender) {
         if (sender instanceof Player player) {
-            if (player.hasPermission("chroma.use")) return player;
+            if (player.hasPermission("spectrum.use")) return player;
             plugin.messages().send(sender, "no-permission");
             return null;
         }
@@ -105,7 +105,7 @@ public final class StyleCommand implements TabExecutor {
     }
 
     private void admin(CommandSender sender, String[] args) {
-        if (!sender.hasPermission("chroma.admin")) {
+        if (!sender.hasPermission("spectrum.admin")) {
             plugin.messages().send(sender, "no-permission");
             return;
         }
@@ -151,7 +151,7 @@ public final class StyleCommand implements TabExecutor {
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         List<String> options = new ArrayList<>();
-        boolean admin = sender.hasPermission("chroma.admin");
+        boolean admin = sender.hasPermission("spectrum.admin");
 
         if (args.length == 1) {
             options.addAll(List.of("equip", "unequip", "list"));

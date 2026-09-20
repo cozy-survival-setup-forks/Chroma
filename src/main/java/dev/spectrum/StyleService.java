@@ -1,8 +1,8 @@
-package dev.chroma;
+package dev.spectrum;
 
-import dev.chroma.style.Style;
-import dev.chroma.style.StyleKind;
-import dev.chroma.style.StyleLibrary;
+import dev.spectrum.style.Style;
+import dev.spectrum.style.StyleKind;
+import dev.spectrum.style.StyleLibrary;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
@@ -16,10 +16,10 @@ import java.util.Map;
  */
 public final class StyleService {
 
-    private final ChromaPlugin plugin;
+    private final SpectrumPlugin plugin;
     private volatile Map<StyleKind, StyleLibrary> libraries = new EnumMap<>(StyleKind.class);
 
-    StyleService(ChromaPlugin plugin) {
+    StyleService(SpectrumPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -40,7 +40,7 @@ public final class StyleService {
 
     /**
      * Can the player use this style? Everyone can when permissions are turned off. Players with the wildcard
-     * of the kind (chroma.chat.* or chroma.name.*) can use all of them.
+     * of the kind (spectrum.chat.* or spectrum.name.*) can use all of them.
      */
     public boolean canUse(Player player, Style style) {
         if (!plugin.settings().usePermissions()) return true;

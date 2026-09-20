@@ -1,8 +1,8 @@
-package dev.chroma.command;
+package dev.spectrum.command;
 
-import dev.chroma.ChromaPlugin;
-import dev.chroma.style.Style;
-import dev.chroma.style.StyleKind;
+import dev.spectrum.SpectrumPlugin;
+import dev.spectrum.style.Style;
+import dev.spectrum.style.StyleKind;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,19 +14,19 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * /chroma reload, and /chroma preview &lt;chat|name&gt; &lt;id&gt; to see a style without owning it.
+ * /spectrum reload, and /spectrum preview &lt;chat|name&gt; &lt;id&gt; to see a style without owning it.
  */
-public final class ChromaCommand implements TabExecutor {
+public final class SpectrumCommand implements TabExecutor {
 
-    private final ChromaPlugin plugin;
+    private final SpectrumPlugin plugin;
 
-    public ChromaCommand(ChromaPlugin plugin) {
+    public SpectrumCommand(SpectrumPlugin plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (!sender.hasPermission("chroma.admin")) {
+        if (!sender.hasPermission("spectrum.admin")) {
             plugin.messages().send(sender, "no-permission");
             return true;
         }
@@ -38,14 +38,14 @@ public final class ChromaCommand implements TabExecutor {
                 plugin.messages().send(sender, "reloaded");
             }
             case "preview" -> preview(sender, args);
-            default -> plugin.messages().send(sender, "usage-chroma");
+            default -> plugin.messages().send(sender, "usage-spectrum");
         }
         return true;
     }
 
     private void preview(CommandSender sender, String[] args) {
         if (args.length < 3) {
-            plugin.messages().send(sender, "usage-chroma");
+            plugin.messages().send(sender, "usage-spectrum");
             return;
         }
         StyleKind kind = args[1].equalsIgnoreCase("name") ? StyleKind.NAME : StyleKind.CHAT;
@@ -62,7 +62,7 @@ public final class ChromaCommand implements TabExecutor {
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        if (!sender.hasPermission("chroma.admin")) return List.of();
+        if (!sender.hasPermission("spectrum.admin")) return List.of();
         List<String> options = new java.util.ArrayList<>();
         if (args.length == 1) options.addAll(List.of("reload", "preview"));
         if (args.length == 2 && args[0].equalsIgnoreCase("preview")) options.addAll(List.of("chat", "name"));

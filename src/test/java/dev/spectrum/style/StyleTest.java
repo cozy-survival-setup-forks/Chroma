@@ -1,4 +1,4 @@
-package dev.chroma.style;
+package dev.spectrum.style;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -44,7 +44,7 @@ class StyleTest {
         Style style = library.get("glitch");
         assertInstanceOf(TemplateStyle.class, style);
         assertEquals("Glitch", style.display());
-        assertEquals("chroma.chat.glitch", style.permission());
+        assertEquals("spectrum.chat.glitch", style.permission());
     }
 
     @Test
@@ -53,7 +53,7 @@ class StyleTest {
 
         Style style = library.get("ocean");
         assertInstanceOf(PaletteStyle.class, style);
-        assertEquals("chroma.name.ocean", style.permission());
+        assertEquals("spectrum.name.ocean", style.permission());
         assertEquals(StyleKind.NAME, style.kind());
     }
 

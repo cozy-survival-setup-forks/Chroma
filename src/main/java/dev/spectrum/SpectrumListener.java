@@ -1,7 +1,7 @@
-package dev.chroma;
+package dev.spectrum;
 
-import dev.chroma.style.Style;
-import dev.chroma.style.StyleKind;
+import dev.spectrum.style.Style;
+import dev.spectrum.style.StyleKind;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.entity.Player;
@@ -14,11 +14,11 @@ import org.bukkit.event.player.PlayerQuitEvent;
 /**
  * Colours chat messages, and keeps track of what players picked.
  */
-public final class ChromaListener implements Listener {
+public final class SpectrumListener implements Listener {
 
-    private final ChromaPlugin plugin;
+    private final SpectrumPlugin plugin;
 
-    ChromaListener(ChromaPlugin plugin) {
+    SpectrumListener(SpectrumPlugin plugin) {
         this.plugin = plugin;
     }
 
@@ -45,7 +45,7 @@ public final class ChromaListener implements Listener {
         String text = PlainTextComponentSerializer.plainText().serialize(event.message());
         if (text.isBlank()) return;
 
-        boolean tags = plugin.settings().allowColorCodes() && player.hasPermission("chroma.chat.codes");
+        boolean tags = plugin.settings().allowColorCodes() && player.hasPermission("spectrum.chat.codes");
         if (tags) text = Messages.convertLegacy(text);
         event.message(style.render(text, tags));
     }

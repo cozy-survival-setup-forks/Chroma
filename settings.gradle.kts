@@ -1,1 +1,1 @@
-rootProject.name = "Chroma"
+rootProject.name = "Spectrum"

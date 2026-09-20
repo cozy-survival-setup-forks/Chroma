@@ -3,7 +3,7 @@ plugins {
     id("xyz.jpenilla.run-paper") version "3.1.0"
 }
 
-group = "dev.chroma"
+group = "dev.spectrum"
 version = property("pluginVersion") as String
 
 repositories {
@@ -44,7 +44,7 @@ tasks {
     }
 
     jar {
-        archiveFileName = "Chroma-${project.version}.jar"
+        archiveFileName = "Spectrum-${project.version}.jar"
     }
 
     runServer {

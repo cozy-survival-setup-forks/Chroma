@@ -1,8 +1,8 @@
-package dev.chroma.hook;
+package dev.spectrum.hook;
 
-import dev.chroma.ChromaPlugin;
-import dev.chroma.style.Style;
-import dev.chroma.style.StyleKind;
+import dev.spectrum.SpectrumPlugin;
+import dev.spectrum.style.Style;
+import dev.spectrum.style.StyleKind;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -13,33 +13,33 @@ import java.util.Locale;
 /**
  * PlaceholderAPI values. {@code <kind>} is {@code name} or {@code chat}.
  * <pre>
- * %chroma_name%                        the player's name in their name gradient, as MiniMessage
- * %chroma_name_legacy%                 the same with § codes,  %chroma_name_amp% with &amp;#rrggbb codes
- * %chroma_&lt;kind&gt;_id%                   the id of the style the player has active, or "none"
- * %chroma_&lt;kind&gt;_display%              its name, coloured, as MiniMessage
- * %chroma_&lt;kind&gt;_equipped_&lt;id&gt;        true if that style is active
- * %chroma_&lt;kind&gt;_owned_&lt;id&gt;           true if the player may use that style
- * %chroma_&lt;kind&gt;_preview_&lt;id&gt;         the player's name (name) or the preview text (chat) in that style, as MiniMessage
- * %chroma_&lt;kind&gt;_preview_legacy_&lt;id&gt;  the same with § codes,  preview_amp_&lt;id&gt; with &amp;#rrggbb codes
+ * %spectrum_name%                        the player's name in their name gradient, as MiniMessage
+ * %spectrum_name_legacy%                 the same with § codes,  %spectrum_name_amp% with &amp;#rrggbb codes
+ * %spectrum_&lt;kind&gt;_id%                   the id of the style the player has active, or "none"
+ * %spectrum_&lt;kind&gt;_display%              its name, coloured, as MiniMessage
+ * %spectrum_&lt;kind&gt;_equipped_&lt;id&gt;        true if that style is active
+ * %spectrum_&lt;kind&gt;_owned_&lt;id&gt;           true if the player may use that style
+ * %spectrum_&lt;kind&gt;_preview_&lt;id&gt;         the player's name (name) or the preview text (chat) in that style, as MiniMessage
+ * %spectrum_&lt;kind&gt;_preview_legacy_&lt;id&gt;  the same with § codes,  preview_amp_&lt;id&gt; with &amp;#rrggbb codes
  * </pre>
  * Only loaded when PlaceholderAPI is installed.
  */
-final class ChromaExpansion extends PlaceholderExpansion {
+final class SpectrumExpansion extends PlaceholderExpansion {
 
-    private final ChromaPlugin plugin;
+    private final SpectrumPlugin plugin;
 
-    ChromaExpansion(ChromaPlugin plugin) {
+    SpectrumExpansion(SpectrumPlugin plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public @NotNull String getIdentifier() {
-        return "chroma";
+        return "spectrum";
     }
 
     @Override
     public @NotNull String getAuthor() {
-        return "Chroma";
+        return "Spectrum";
     }
 
     @Override

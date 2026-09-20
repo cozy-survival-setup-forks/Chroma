@@ -1,6 +1,6 @@
-name: Chroma
+name: Spectrum
 version: '${version}'
-main: dev.chroma.ChromaPlugin
+main: dev.spectrum.SpectrumPlugin
 api-version: '1.21'
 description: Chat colours and name gradients, defined in two simple files
 softdepend:
@@ -13,23 +13,23 @@ commands:
   namegradient:
     description: Choose your name gradient
     usage: /<command> equip <id> | unequip | list
-  chroma:
-    description: Reload Chroma or preview a style
+  spectrum:
+    description: Reload Spectrum or preview a style
     usage: /<command> reload | preview <chat|name> <id>
 
 permissions:
-  chroma.use:
+  spectrum.use:
     description: Use /chatcolor and /namegradient
     default: true
-  chroma.admin:
+  spectrum.admin:
     description: Reload, preview and give or remove styles
     default: op
-  chroma.chat.codes:
+  spectrum.chat.codes:
     description: Write colour codes and MiniMessage in chat messages (needs chat.allow-color-codes)
     default: false
-  chroma.chat.*:
+  spectrum.chat.*:
     description: Use every chat colour
     default: op
-  chroma.name.*:
+  spectrum.name.*:
     description: Use every name gradient
     default: op

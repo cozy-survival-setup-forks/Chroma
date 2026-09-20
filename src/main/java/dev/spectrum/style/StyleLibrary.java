@@ -1,4 +1,4 @@
-package dev.chroma.style;
+package dev.spectrum.style;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.Nullable;

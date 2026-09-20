@@ -1,18 +1,18 @@
-package dev.chroma;
+package dev.spectrum;
 
-import dev.chroma.command.ChromaCommand;
-import dev.chroma.command.StyleCommand;
-import dev.chroma.hook.Hooks;
-import dev.chroma.style.StyleKind;
+import dev.spectrum.command.SpectrumCommand;
+import dev.spectrum.command.StyleCommand;
+import dev.spectrum.hook.Hooks;
+import dev.spectrum.style.StyleKind;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * Chroma: colours for chat messages and player names, defined in chatcolors.yml and namegradients.yml.
+ * Spectrum: colours for chat messages and player names, defined in chatcolors.yml and namegradients.yml.
  */
-public class ChromaPlugin extends JavaPlugin {
+public class SpectrumPlugin extends JavaPlugin {
 
     private Settings settings;
     private Messages messages;
@@ -37,14 +37,14 @@ public class ChromaPlugin extends JavaPlugin {
                 registered.setTabCompleter(command);
             }
         }
-        ChromaCommand admin = new ChromaCommand(this);
-        PluginCommand chroma = getCommand("chroma");
-        if (chroma != null) {
-            chroma.setExecutor(admin);
-            chroma.setTabCompleter(admin);
+        SpectrumCommand admin = new SpectrumCommand(this);
+        PluginCommand spectrum = getCommand("spectrum");
+        if (spectrum != null) {
+            spectrum.setExecutor(admin);
+            spectrum.setTabCompleter(admin);
         }
 
-        Bukkit.getPluginManager().registerEvents(new ChromaListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new SpectrumListener(this), this);
         hooks.registerPlaceholders();
 
         // Players who are already online (after a reload of the plugin).

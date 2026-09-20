@@ -1,4 +1,4 @@
-# Chroma
+# Spectrum
 
 Chat colours and name gradients for Paper 1.21+, each defined in its own simple file. There is no built-in menu:
 build one with DeluxeMenus (or any menu plugin) using the commands and placeholders below.
@@ -45,28 +45,28 @@ matrix, frost, lava and neon formats.
 | `/chatcolor equip <id>`, `unequip`, `list` | Pick a chat colour |
 | `/namegradient equip <id>`, `unequip`, `list` | Pick a name gradient |
 | `/namegradient admin give\|remove <player> <id>` | Give or take a style (runs the commands set in `config.yml`) |
-| `/chroma reload` | Reload all files |
-| `/chroma preview <chat\|name> <id>` | Preview a style |
+| `/spectrum reload` | Reload all files |
+| `/spectrum preview <chat\|name> <id>` | Preview a style |
 
 ## Permissions
 
-- `chroma.chat.<id>` and `chroma.name.<id>`: use one style (or set your own with `permission:` on the style)
-- `chroma.chat.*` and `chroma.name.*`: use all of them (op by default)
-- `chroma.admin`: reload, preview, give and remove
-- `chroma.chat.codes`: write colour codes and MiniMessage in chat (needs `chat.allow-color-codes: true`)
+- `spectrum.chat.<id>` and `spectrum.name.<id>`: use one style (or set your own with `permission:` on the style)
+- `spectrum.chat.*` and `spectrum.name.*`: use all of them (op by default)
+- `spectrum.admin`: reload, preview, give and remove
+- `spectrum.chat.codes`: write colour codes and MiniMessage in chat (needs `chat.allow-color-codes: true`)
 
 Set `use-permissions: false` in `config.yml` to let everybody use every style.
 
 ## Placeholders (PlaceholderAPI)
 
-Names, for a chat, tab or scoreboard plugin: `%chroma_name%` (MiniMessage), `%chroma_name_legacy%` (`§` codes),
-`%chroma_name_amp%` (`&#rrggbb`). A player without a gradient just gets their plain name.
+Names, for a chat, tab or scoreboard plugin: `%spectrum_name%` (MiniMessage), `%spectrum_name_legacy%` (`§` codes),
+`%spectrum_name_amp%` (`&#rrggbb`). A player without a gradient just gets their plain name.
 
 For menus, replace `<kind>` with `chat` or `name`:
 
-- `%chroma_<kind>_id%` and `%chroma_<kind>_display%`: what the player has equipped
-- `%chroma_<kind>_equipped_<id>%` and `%chroma_<kind>_owned_<id>%`: `true` or `false`
-- `%chroma_<kind>_preview_<id>%`, `..._preview_legacy_<id>%`, `..._preview_amp_<id>%`: a preview of a style
+- `%spectrum_<kind>_id%` and `%spectrum_<kind>_display%`: what the player has equipped
+- `%spectrum_<kind>_equipped_<id>%` and `%spectrum_<kind>_owned_<id>%`: `true` or `false`
+- `%spectrum_<kind>_preview_<id>%`, `..._preview_legacy_<id>%`, `..._preview_amp_<id>%`: a preview of a style
 
 ## DeluxeMenus example
 
@@ -75,7 +75,7 @@ items:
   ocean:
     material: LIGHT_BLUE_DYE
     slot: 10
-    display_name: "%chroma_chat_preview_ocean%"
+    display_name: "%spectrum_chat_preview_ocean%"
     left_click_commands:
       - "[player] chatcolor equip ocean"
 ```

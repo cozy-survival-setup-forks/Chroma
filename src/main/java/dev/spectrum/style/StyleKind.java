@@ -1,12 +1,12 @@
-package dev.chroma.style;
+package dev.spectrum.style;
 
 /**
  * The two things a player can style: the text of their chat messages and their name.
  */
 public enum StyleKind {
 
-    CHAT("chatcolors.yml", "chat", "chatcolor", "chroma.chat.{id}"),
-    NAME("namegradients.yml", "name", "namegradient", "chroma.name.{id}");
+    CHAT("chatcolors.yml", "chat", "chatcolor", "spectrum.chat.{id}"),
+    NAME("namegradients.yml", "name", "namegradient", "spectrum.name.{id}");
 
     private final String fileName;
     private final String key;
@@ -25,7 +25,7 @@ public enum StyleKind {
         return fileName;
     }
 
-    /** Used in placeholders (%chroma_name_id%) and to save what a player picked. */
+    /** Used in placeholders (%spectrum_name_id%) and to save what a player picked. */
     public String key() {
         return key;
     }

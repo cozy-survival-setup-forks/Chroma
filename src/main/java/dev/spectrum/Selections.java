@@ -1,6 +1,6 @@
-package dev.chroma;
+package dev.spectrum;
 
-import dev.chroma.style.StyleKind;
+import dev.spectrum.style.StyleKind;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -17,10 +17,10 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class Selections {
 
-    private final ChromaPlugin plugin;
+    private final SpectrumPlugin plugin;
     private final Map<UUID, Map<StyleKind, String>> online = new ConcurrentHashMap<>();
 
-    Selections(ChromaPlugin plugin) {
+    Selections(SpectrumPlugin plugin) {
         this.plugin = plugin;
     }
 

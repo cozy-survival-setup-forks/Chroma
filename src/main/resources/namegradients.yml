@@ -1,13 +1,13 @@
 # Name gradients: the colours of a player's name.
 #
-# Players pick one with /namegradient equip <id>. Each one needs the permission chroma.name.<id>
-# (chroma.name.* gives all of them), or set your own with `permission:`.
+# Players pick one with /namegradient equip <id>. Each one needs the permission spectrum.name.<id>
+# (spectrum.name.* gives all of them), or set your own with `permission:`.
 #
-# Chroma does not change names by itself. Put the placeholder in your chat, tab or scoreboard plugin:
-#     %chroma_name%          the name in the gradient, as MiniMessage
-#     %chroma_name_legacy%   the same with § colour codes
-#     %chroma_name_amp%      the same with &#rrggbb colour codes
-# A player without a gradient just gets their plain name. For menus, %chroma_name_preview_<id>% shows
+# Spectrum does not change names by itself. Put the placeholder in your chat, tab or scoreboard plugin:
+#     %spectrum_name%          the name in the gradient, as MiniMessage
+#     %spectrum_name_legacy%   the same with § colour codes
+#     %spectrum_name_amp%      the same with &#rrggbb colour codes
+# A player without a gradient just gets their plain name. For menus, %spectrum_name_preview_<id>% shows
 # the player's name in any gradient. The full list of placeholders is in the README.
 #
 # A style is written in one of two ways, the same as in chatcolors.yml.

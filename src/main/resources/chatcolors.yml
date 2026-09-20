@@ -1,7 +1,7 @@
 # Chat colours: the colour of the messages a player writes.
 #
-# Players pick one with /chatcolor equip <id>. Each one needs the permission chroma.chat.<id>
-# (chroma.chat.* gives all of them), or set your own with `permission:`.
+# Players pick one with /chatcolor equip <id>. Each one needs the permission spectrum.chat.<id>
+# (spectrum.chat.* gives all of them), or set your own with `permission:`.
 #
 # A style is written in one of two ways.
 #

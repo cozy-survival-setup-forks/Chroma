@@ -1,4 +1,4 @@
-package dev.chroma;
+package dev.spectrum;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -23,7 +23,7 @@ public final class Settings {
         return config.getString("name-source", "");
     }
 
-    /** Whether players with chroma.chat.codes can write colour codes and MiniMessage in their messages. */
+    /** Whether players with spectrum.chat.codes can write colour codes and MiniMessage in their messages. */
     public boolean allowColorCodes() {
         return config.getBoolean("chat.allow-color-codes", false);
     }

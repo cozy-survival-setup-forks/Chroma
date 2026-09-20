@@ -1,4 +1,4 @@
-package dev.chroma;
+package dev.spectrum;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -26,10 +26,10 @@ public final class Messages {
     private static final String[] TAGS = {"black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple",
             "gold", "gray", "dark_gray", "blue", "green", "aqua", "red", "light_purple", "yellow", "white"};
 
-    private final ChromaPlugin plugin;
+    private final SpectrumPlugin plugin;
     private FileConfiguration file = new YamlConfiguration();
 
-    Messages(ChromaPlugin plugin) {
+    Messages(SpectrumPlugin plugin) {
         this.plugin = plugin;
     }
 

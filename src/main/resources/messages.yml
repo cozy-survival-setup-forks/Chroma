@@ -1,7 +1,7 @@
 # MiniMessage (<red>text</red>) and old & codes both work. <placeholders> are filled in.
 # Leave a message empty to turn it off. Lists use {prefix} where the prefix should go.
 
-prefix: "<gradient:#ff5ecb:#5eb8ff><bold>CHROMA</bold></gradient> <dark_gray>» "
+prefix: "<gradient:#ff5ecb:#5eb8ff><bold>SPECTRUM</bold></gradient> <dark_gray>» "
 
 no-permission: "<red>You do not have permission."
 players-only: "<red>Only players can do that."
@@ -28,7 +28,7 @@ usage-name:
   - "<white>/namegradient equip <id> <gray>▸ pick a gradient"
   - "<white>/namegradient unequip <gray>▸ remove it"
   - "<white>/namegradient list <gray>▸ the ones you can use"
-usage-chroma:
-  - "{prefix}<white>Chroma"
-  - "<white>/chroma reload <gray>▸ reload the files"
-  - "<white>/chroma preview <chat|name> <id> <gray>▸ see a style"
+usage-spectrum:
+  - "{prefix}<white>Spectrum"
+  - "<white>/spectrum reload <gray>▸ reload the files"
+  - "<white>/spectrum preview <chat|name> <id> <gray>▸ see a style"
