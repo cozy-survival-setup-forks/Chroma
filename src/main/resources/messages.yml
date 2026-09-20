@@ -1,0 +1,34 @@
+# MiniMessage (<red>text</red>) and old & codes both work. <placeholders> are filled in.
+# Leave a message empty to turn it off. Lists use {prefix} where the prefix should go.
+
+prefix: "<gradient:#ff5ecb:#5eb8ff><bold>CHROMA</bold></gradient> <dark_gray>» "
+
+no-permission: "<red>You do not have permission."
+players-only: "<red>Only players can do that."
+invalid-style: "<red>There is no style with that name."
+not-owned: "<white>You do not have <style><white>."
+equipped: "<white>You picked <style><white>."
+unequipped: "<white>Your style was <red>removed<white>."
+list-empty: "<gray>You do not have any styles yet."
+list-header: "<white>Your styles:"
+list-entry: "<gray>▸ <style> <dark_gray>(<id>)"
+admin-give: "<white>Gave <style><white> to <white><player><white>."
+admin-remove: "<white>Removed <style><white> from <white><player><white>."
+player-not-found: "<red><player> is not online."
+reloaded: "<white>Reloaded the files."
+preview: "<gray><id><dark_gray>: <text>"
+
+usage-chat:
+  - "{prefix}<white>Chat colours"
+  - "<white>/chatcolor equip <id> <gray>▸ pick a colour"
+  - "<white>/chatcolor unequip <gray>▸ remove it"
+  - "<white>/chatcolor list <gray>▸ the ones you can use"
+usage-name:
+  - "{prefix}<white>Name gradients"
+  - "<white>/namegradient equip <id> <gray>▸ pick a gradient"
+  - "<white>/namegradient unequip <gray>▸ remove it"
+  - "<white>/namegradient list <gray>▸ the ones you can use"
+usage-chroma:
+  - "{prefix}<white>Chroma"
+  - "<white>/chroma reload <gray>▸ reload the files"
+  - "<white>/chroma preview <chat|name> <id> <gray>▸ see a style"

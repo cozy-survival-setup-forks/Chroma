@@ -1,0 +1,95 @@
+# Name gradients: the colours of a player's name.
+#
+# Players pick one with /namegradient equip <id>. Each one needs the permission chroma.name.<id>
+# (chroma.name.* gives all of them), or set your own with `permission:`.
+#
+# Chroma does not change names by itself. Put the placeholder in your chat, tab or scoreboard plugin:
+#     %chroma_name%          the name in the gradient, as MiniMessage
+#     %chroma_name_legacy%   the same with § colour codes
+#     %chroma_name_amp%      the same with &#rrggbb colour codes
+# A player without a gradient just gets their plain name. For menus, %chroma_name_preview_<id>% shows
+# the player's name in any gradient. The full list of placeholders is in the README.
+#
+# A style is written in one of two ways, the same as in chatcolors.yml.
+#
+# 1. With colours:
+#      mode      SINGLE    one colour
+#                GRADIENT  a smooth fade through the colours
+#                LINEAR    the colours one after the other, over and over
+#                RANDOM    a random one of the colours for every letter
+#                RAINBOW   the rainbow, no colour list needed
+#      colors    #rrggbb, a name (dark_red) or an old code (4, c)
+#      bold, italic, underline, strikethrough, obfuscated    true or false
+#      ignore-spaces   for LINEAR: spaces do not use up a colour
+#
+# 2. With a MiniMessage format, where {name} is the name. Old files that use `pattern:` still work.
+#    https://docs.advntr.dev/minimessage/format.html
+#
+# `display` is the name in /namegradient list and menus, it is coloured with the style.
+
+# The gradient players get without picking one, if they may use it. Leave empty for none.
+default: ''
+
+styles:
+  # ---- gradients ----
+  sunset:
+    display: "Sunset"
+    mode: GRADIENT
+    colors: ["#ff512f", "#f09819", "#ffd200"]
+  ocean:
+    display: "Ocean"
+    mode: GRADIENT
+    colors: ["#00c6ff", "#0072ff"]
+  aurora:
+    display: "Aurora"
+    mode: GRADIENT
+    colors: ["#00ff87", "#60efff", "#c471ed"]
+  royal:
+    display: "Royal"
+    mode: GRADIENT
+    colors: ["#ffd700", "#ff8c00"]
+    bold: true
+  ember:
+    display: "Ember"
+    mode: GRADIENT
+    colors: ["#ff0000", "#ff7b00"]
+    bold: true
+
+  # ---- one colour ----
+  groovy:
+    display: "Groovy"
+    mode: SINGLE
+    colors: ["#ff0000"]
+
+  # ---- other modes ----
+  rainbow:
+    display: "Rainbow"
+    mode: RAINBOW
+    bold: true
+  candy:
+    display: "Candy"
+    mode: LINEAR
+    colors: ["#ff9ac1", "#ffffff"]
+  sparkle:
+    display: "Sparkle"
+    mode: RANDOM
+    colors: ["#fff6a8", "#ffd1ff", "#b8f0ff", "#ffffff"]
+
+  # ---- MiniMessage formats ----
+  # <obfuscated> makes the letters inside it flicker, which gives the glitch look.
+  glitch:
+    display: "Glitch"
+    format: "<gradient:#00ffff:#ff00ff><obfuscated>|</obfuscated>{name}<obfuscated>|</obfuscated></gradient>"
+  matrix:
+    display: "Matrix"
+    format: "<#00ff41><obfuscated>0</obfuscated>{name}<obfuscated>1</obfuscated></#00ff41>"
+  frost:
+    display: "Frost"
+    format: "<gradient:#e6f7ff:#7fd0ff:#e6f7ff>{name}</gradient>"
+  neon:
+    display: "Neon"
+    format: "<bold><gradient:#ff00ff:#00ffff>{name}</gradient></bold>"
+  # An old NameGradient entry, kept as it was:
+  legacy_example:
+    display: "Legacy Example"
+    pattern: "<reset><#ff0000>{name}"

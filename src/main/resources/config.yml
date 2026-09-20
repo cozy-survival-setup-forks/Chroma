@@ -1,0 +1,30 @@
+# Chroma
+#
+# The styles themselves are in two files:
+#   chatcolors.yml     the colours of chat messages
+#   namegradients.yml  the gradients of player names
+# Both use the same entries, see the examples in them. Reload with /chroma reload.
+#
+# Every style has a permission, chroma.chat.<id> or chroma.name.<id>, and chroma.chat.* / chroma.name.*
+# gives all of them. Players choose with /chatcolor equip <id> and /namegradient equip <id>, which is what
+# a DeluxeMenus menu can run.
+
+# Set to false to let every player use every style.
+use-permissions: true
+
+# The placeholder that gives the name to put the gradient on. Use a nickname placeholder if you have one,
+# colours in it are removed. Leave empty to use the player's own name.
+name-source: '%essentials_nickname%'
+
+chat:
+  # Players with the permission chroma.chat.codes can write & colour codes and MiniMessage tags in messages.
+  # Styles made of colours (mode: GRADIENT and so on) ignore them, styles with a format use them.
+  allow-color-codes: false
+  # The text shown by %chroma_chat_preview_<id>% and /chroma preview chat
+  preview-text: "The quick brown fox"
+
+# Run by the console when an admin uses /namegradient admin give|remove or /chatcolor admin give|remove.
+# {player} and {permission} are filled in. Empty to do nothing.
+commands:
+  permission-set: 'lp user {player} permission set {permission} true'
+  permission-unset: 'lp user {player} permission unset {permission}'

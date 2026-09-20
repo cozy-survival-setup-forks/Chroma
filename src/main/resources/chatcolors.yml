@@ -1,0 +1,93 @@
+# Chat colours: the colour of the messages a player writes.
+#
+# Players pick one with /chatcolor equip <id>. Each one needs the permission chroma.chat.<id>
+# (chroma.chat.* gives all of them), or set your own with `permission:`.
+#
+# A style is written in one of two ways.
+#
+# 1. With colours:
+#      mode      SINGLE    one colour
+#                GRADIENT  a smooth fade through the colours
+#                LINEAR    the colours one after the other, over and over
+#                RANDOM    a random one of the colours for every letter
+#                RAINBOW   the rainbow, no colour list needed
+#      colors    #rrggbb, a name (dark_red) or an old code (4, c)
+#      bold, italic, underline, strikethrough, obfuscated    true or false
+#      ignore-spaces   for LINEAR: spaces do not use up a colour
+#
+# 2. With a MiniMessage format, where {text} is the message. Anything MiniMessage has works:
+#    <gradient:#ff0000:#0000ff>, <rainbow>, <obfuscated> for glitchy letters, <bold> and so on.
+#    https://docs.advntr.dev/minimessage/format.html
+#
+# `display` is the name in /chatcolor list and menus, it is coloured with the style.
+
+# The style players get without picking one, if they may use it. Leave empty for none.
+default: ''
+
+styles:
+  # ---- one colour ----
+  rose:
+    display: "Rose"
+    mode: SINGLE
+    colors: ["#ff7aa8"]
+  mint:
+    display: "Mint"
+    colors: ["#7dffc4"]
+  gold:
+    display: "Gold"
+    colors: ["#ffcc33"]
+    bold: true
+
+  # ---- gradients ----
+  sunset:
+    display: "Sunset"
+    mode: GRADIENT
+    colors: ["#ff512f", "#f09819", "#ffd200"]
+  ocean:
+    display: "Ocean"
+    mode: GRADIENT
+    colors: ["#00c6ff", "#0072ff"]
+  aurora:
+    display: "Aurora"
+    mode: GRADIENT
+    colors: ["#00ff87", "#60efff", "#c471ed"]
+  royal:
+    display: "Royal"
+    mode: GRADIENT
+    colors: ["#ffd700", "#ff8c00"]
+    bold: true
+
+  # ---- other modes ----
+  rainbow:
+    display: "Rainbow"
+    mode: RAINBOW
+  candy:
+    display: "Candy"
+    mode: LINEAR
+    colors: ["#ff9ac1", "#ffffff"]
+    ignore-spaces: true
+  sparkle:
+    display: "Sparkle"
+    mode: RANDOM
+    colors: ["#fff6a8", "#ffd1ff", "#b8f0ff", "#ffffff"]
+
+  # ---- MiniMessage formats ----
+  # <obfuscated> makes the letters inside it flicker, which gives the glitch look.
+  glitch:
+    display: "Glitch"
+    format: "<gradient:#00ffff:#ff00ff><obfuscated>||</obfuscated> {text} <obfuscated>||</obfuscated></gradient>"
+  glitch_red:
+    display: "Glitch Red"
+    format: "<#ff1744><obfuscated>##</obfuscated> {text} <obfuscated>##</obfuscated>"
+  matrix:
+    display: "Matrix"
+    format: "<#00ff41><obfuscated>0</obfuscated>{text}<obfuscated>1</obfuscated>"
+  frost:
+    display: "Frost"
+    format: "<gradient:#e6f7ff:#7fd0ff:#e6f7ff>{text}</gradient>"
+  lava:
+    display: "Lava"
+    format: "<gradient:#ff0000:#ff9100:#ffea00>{text}</gradient>"
+  neon:
+    display: "Neon"
+    format: "<bold><gradient:#ff00ff:#00ffff>{text}</gradient></bold>"

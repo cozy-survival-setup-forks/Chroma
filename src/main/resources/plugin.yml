@@ -1,0 +1,35 @@
+name: Chroma
+version: '${version}'
+main: dev.chroma.ChromaPlugin
+api-version: '1.21'
+description: Chat colours and name gradients, defined in two simple files
+softdepend:
+  - PlaceholderAPI
+
+commands:
+  chatcolor:
+    description: Choose the colour of your chat messages
+    usage: /<command> equip <id> | unequip | list
+  namegradient:
+    description: Choose your name gradient
+    usage: /<command> equip <id> | unequip | list
+  chroma:
+    description: Reload Chroma or preview a style
+    usage: /<command> reload | preview <chat|name> <id>
+
+permissions:
+  chroma.use:
+    description: Use /chatcolor and /namegradient
+    default: true
+  chroma.admin:
+    description: Reload, preview and give or remove styles
+    default: op
+  chroma.chat.codes:
+    description: Write colour codes and MiniMessage in chat messages (needs chat.allow-color-codes)
+    default: false
+  chroma.chat.*:
+    description: Use every chat colour
+    default: op
+  chroma.name.*:
+    description: Use every name gradient
+    default: op
