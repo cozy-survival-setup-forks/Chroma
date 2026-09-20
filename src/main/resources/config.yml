@@ -23,6 +23,14 @@ chat:
   # The text shown by %spectrum_chat_preview_<id>% and /spectrum preview chat
   preview-text: "The quick brown fox"
 
+# The glitch look for chat colours: white letters with a shadow in the colour of the style.
+# A style turns it on with `glitch: true` in chatcolors.yml. `all: true` does it for every chat colour that is made of
+# colours, and a style can still say `glitch: false`. Styles with a `format:` are never changed.
+glitch:
+  all: false
+  # The colour of the letters. Any colour works: white, #ffffff, ...
+  text: white
+
 # Run by the console when an admin uses /namegradient admin give|remove or /chatcolor admin give|remove.
 # {player} and {permission} are filled in. Empty to do nothing.
 commands:

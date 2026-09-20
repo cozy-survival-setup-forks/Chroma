@@ -29,7 +29,7 @@ public final class StyleService {
             File file = new File(plugin.getDataFolder(), kind.fileName());
             if (!file.exists()) plugin.saveResource(kind.fileName(), false);
             YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
-            loaded.put(kind, StyleLibrary.load(kind, yaml, plugin.getLogger()));
+            loaded.put(kind, StyleLibrary.load(kind, yaml, plugin.getLogger(), plugin.settings().glitch()));
         }
         libraries = loaded;
     }

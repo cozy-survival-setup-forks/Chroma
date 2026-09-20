@@ -1,5 +1,9 @@
 package dev.spectrum;
 
+import dev.spectrum.style.GlitchOptions;
+import dev.spectrum.style.Palette;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.configuration.file.FileConfiguration;
 
 /**
@@ -31,6 +35,12 @@ public final class Settings {
     /** The text shown in the preview placeholders of chat styles. */
     public String chatPreviewText() {
         return config.getString("chat.preview-text", "The quick brown fox");
+    }
+
+    /** The glitch look for chat colours: white letters with the colour of the style as their shadow. */
+    public GlitchOptions glitch() {
+        TextColor text = Palette.parseColor(config.getString("glitch.text", "white"));
+        return new GlitchOptions(config.getBoolean("glitch.all", false), text == null ? NamedTextColor.WHITE : text);
     }
 
     /** The command that gives a player the permission of a style. {player} and {permission} are filled in. */

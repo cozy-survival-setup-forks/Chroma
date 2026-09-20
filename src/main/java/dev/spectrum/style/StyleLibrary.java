@@ -29,6 +29,10 @@ public final class StyleLibrary {
      * @param root the whole file: {@code default:} and {@code styles:}
      */
     public static StyleLibrary load(StyleKind kind, ConfigurationSection root, Logger logger) {
+        return load(kind, root, logger, GlitchOptions.OFF);
+    }
+
+    public static StyleLibrary load(StyleKind kind, ConfigurationSection root, Logger logger, GlitchOptions glitch) {
         Map<String, Style> styles = new LinkedHashMap<>();
         ConfigurationSection section = root.getConfigurationSection("styles");
         if (section != null) {
@@ -38,7 +42,7 @@ public final class StyleLibrary {
                     logger.warning(kind.fileName() + ": '" + key + "' is not a section, skipping it.");
                     continue;
                 }
-                Style style = StyleParser.parse(kind, key, entry, logger);
+                Style style = StyleParser.parse(kind, key, entry, logger, glitch);
                 if (style == null) continue;
                 if (styles.putIfAbsent(style.id(), style) != null) {
                     logger.warning(kind.fileName() + ": the id '" + style.id() + "' is used twice, the first one is kept.");

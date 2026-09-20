@@ -46,7 +46,8 @@ public final class StyleParser {
     /**
      * @return the style, or null if the entry has neither a format nor colours (the reason is logged)
      */
-    public static @Nullable Style parse(StyleKind kind, String key, ConfigurationSection section, Logger logger) {
+    public static @Nullable Style parse(StyleKind kind, String key, ConfigurationSection section, Logger logger,
+                                        GlitchOptions glitch) {
         String id = cleanId(key);
         if (id.isEmpty()) {
             logger.warning(kind.fileName() + ": '" + key + "' is not a usable id (use letters, numbers, - and _).");
@@ -61,6 +62,9 @@ public final class StyleParser {
         if (!format.isBlank()) {
             if (!TemplateStyle.hasPlaceholder(format)) {
                 logger.warning(kind.fileName() + ": " + id + " has no {text} in its format, the text is added at the end.");
+            }
+            if (section.getBoolean("glitch", false)) {
+                logger.warning(kind.fileName() + ": " + id + " has a format, glitch only works on styles made of colours.");
             }
             return new TemplateStyle(kind, id, display, permission, format);
         }
@@ -90,7 +94,21 @@ public final class StyleParser {
                 section.getBoolean("strikethrough", false),
                 section.getBoolean("obfuscated", section.getBoolean("magic", false)));
 
-        return new PaletteStyle(kind, id, display, permission, mode, colors, section.getBoolean("ignore-spaces", false), decorations);
+        TextColor glitchText = glitchText(kind, id, section, glitch, logger);
+        return new PaletteStyle(kind, id, display, permission, mode, colors, section.getBoolean("ignore-spaces", false), decorations, glitchText);
+    }
+
+    /** The letter colour of a glitch style, or null when the style is not one. Only chat colours can glitch. */
+    private static @Nullable TextColor glitchText(StyleKind kind, String id, ConfigurationSection section, GlitchOptions glitch,
+                                                   Logger logger) {
+        boolean own = section.contains("glitch");
+        boolean wanted = own ? section.getBoolean("glitch") : glitch.all();
+        if (!wanted) return null;
+        if (kind != StyleKind.CHAT) {
+            if (own) logger.warning(kind.fileName() + ": " + id + " has glitch, which only works for chat colours.");
+            return null;
+        }
+        return glitch.text();
     }
 
     private static Palette.Mode parseMode(String text, StyleKind kind, String id, Logger logger) {

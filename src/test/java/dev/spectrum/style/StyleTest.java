@@ -1,6 +1,7 @@
 package dev.spectrum.style;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.junit.jupiter.api.Test;
@@ -181,5 +182,77 @@ class StyleTest {
         Style style = library(StyleKind.NAME, "styles:\n  red:\n    colors: ['#ff0000']\n").get("red");
 
         assertEquals("&#ff0000Steve", style.ampersand("Steve"));
+    }
+
+    // ---- glitch ----
+
+    private static final GlitchOptions ALL = new GlitchOptions(true, net.kyori.adventure.text.format.NamedTextColor.WHITE);
+
+    private static StyleLibrary glitchLibrary(StyleKind kind, GlitchOptions options, String text) throws Exception {
+        return StyleLibrary.load(kind, yaml(text), LOG, options);
+    }
+
+    /** The shadow colours of the pieces of a component. */
+    private static java.util.List<String> shadows(Component component) {
+        java.util.List<String> found = new java.util.ArrayList<>();
+        for (Component child : component.children()) {
+            var shadow = child.style().shadowColor();
+            if (shadow != null) found.add(shadow.asHexString().toLowerCase());
+        }
+        return found;
+    }
+
+    @Test
+    void aGlitchStyleHasWhiteLettersWithAColouredShadow() throws Exception {
+        Style style = glitchLibrary(StyleKind.CHAT, GlitchOptions.OFF, "styles:\n  redg:\n    colors: ['#f13a3a']\n    glitch: true\n").get("redg");
+
+        Component component = style.render("hello");
+
+        assertEquals("hello", plain(component));
+        assertEquals(java.util.List.of("#f13a3aff"), shadows(component));
+        assertEquals(net.kyori.adventure.text.format.NamedTextColor.WHITE, component.children().get(0).color());
+    }
+
+    @Test
+    void aGlitchRainbowGivesEveryLetterItsOwnShadow() throws Exception {
+        Style style = glitchLibrary(StyleKind.CHAT, GlitchOptions.OFF, "styles:\n  rb:\n    mode: RAINBOW\n    glitch: true\n").get("rb");
+
+        assertTrue(shadows(style.render("rainbow")).size() > 3);
+    }
+
+    @Test
+    void theLetterColourComesFromTheConfig() throws Exception {
+        GlitchOptions gray = new GlitchOptions(false, net.kyori.adventure.text.format.NamedTextColor.GRAY);
+        Style style = glitchLibrary(StyleKind.CHAT, gray, "styles:\n  redg:\n    colors: ['#f13a3a']\n    glitch: true\n").get("redg");
+
+        assertEquals(net.kyori.adventure.text.format.NamedTextColor.GRAY, style.render("hi").children().get(0).color());
+    }
+
+    @Test
+    void theConfigCanTurnEveryColourStyleIntoAGlitchOne() throws Exception {
+        StyleLibrary library = glitchLibrary(StyleKind.CHAT, ALL,
+                "styles:\n  red:\n    colors: ['#ff0000']\n  plain:\n    colors: ['#00ff00']\n    glitch: false\n  fmt:\n    format: '<red>{text}'\n");
+
+        assertFalse(shadows(library.get("red").render("hi")).isEmpty());
+        assertTrue(shadows(library.get("plain").render("hi")).isEmpty());
+        assertTrue(shadows(library.get("fmt").render("hi")).isEmpty());
+    }
+
+    @Test
+    void nameStylesNeverGlitch() throws Exception {
+        Style style = glitchLibrary(StyleKind.NAME, ALL, "styles:\n  red:\n    colors: ['#ff0000']\n    glitch: true\n").get("red");
+
+        assertTrue(shadows(style.render("Steve")).isEmpty());
+        assertEquals("&#ff0000Steve", style.ampersand("Steve"));
+    }
+
+    @Test
+    void aGlitchPreviewIsWrittenAsMiniMessage() throws Exception {
+        Style style = glitchLibrary(StyleKind.CHAT, GlitchOptions.OFF, "styles:\n  redg:\n    colors: ['#f13a3a']\n    glitch: true\n").get("redg");
+
+        String mini = style.ampersand("Hi");
+
+        assertTrue(mini.toLowerCase().contains("<shadow:#f13a3aff>"), mini);
+        assertEquals("Hi", plain(MiniMessage.miniMessage().deserialize(mini)));
     }
 }

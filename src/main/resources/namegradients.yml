@@ -74,9 +74,9 @@ styles:
     colors: ["#fff6a8", "#ffd1ff", "#b8f0ff", "#ffffff"]
 
   # ---- MiniMessage formats ----
-  # <obfuscated> makes the letters inside it flicker, which gives the glitch look.
-  glitch:
-    display: "Glitch"
+  # <obfuscated> makes the letters inside it flicker.
+  flicker:
+    display: "Flicker"
     format: "<gradient:#00ffff:#ff00ff><obfuscated>|</obfuscated>{name}<obfuscated>|</obfuscated></gradient>"
   matrix:
     display: "Matrix"

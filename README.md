@@ -27,15 +27,36 @@ ocean:
 **With a MiniMessage format** (`{text}` in chatcolors.yml, `{name}` in namegradients.yml)
 
 ```yaml
-glitch:
-  display: "Glitch"
-  format: "<gradient:#00ffff:#ff00ff><obfuscated>||</obfuscated> {text} <obfuscated>||</obfuscated></gradient>"
+frost:
+  display: "Frost"
+  format: "<gradient:#e6f7ff:#7fd0ff:#e6f7ff>{text}</gradient>"
 ```
 
-`<obfuscated>` makes the letters inside it flicker, which is what gives the glitch look.
+Both files come with examples: gradients, single colours, rainbow, alternating and random colours, and matrix, frost,
+lava and neon formats.
 
-Both files come with examples: gradients, single colours, rainbow, alternating and random colours, and glitch,
-matrix, frost, lava and neon formats.
+### Glitch colours
+
+A glitch chat colour has white letters with a shadow in the colour of the style. Turn it on for one style:
+
+```yaml
+red_glitch:
+  display: "Red Glitch"
+  colors: ["#f13a3a"]
+  glitch: true
+```
+
+or for every chat colour that is made of colours, in `config.yml`:
+
+```yaml
+glitch:
+  all: true      # a style can still say glitch: false
+  text: white    # the colour of the letters
+```
+
+Styles with a `format:` are never changed, and glitch only works for chat colours, because a player name goes through
+colour codes that cannot carry a shadow. Glitch previews in menus (`%spectrum_chat_preview_<id>%`) are written as
+MiniMessage (`<shadow:#f13a3aff><white>text`), so the menu plugin has to read MiniMessage.
 
 ## Commands
 

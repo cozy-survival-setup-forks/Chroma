@@ -14,9 +14,10 @@
 #      colors    #rrggbb, a name (dark_red) or an old code (4, c)
 #      bold, italic, underline, strikethrough, obfuscated    true or false
 #      ignore-spaces   for LINEAR: spaces do not use up a colour
+#      glitch    true: white letters with a shadow in the colour of the style (see config.yml)
 #
 # 2. With a MiniMessage format, where {text} is the message. Anything MiniMessage has works:
-#    <gradient:#ff0000:#0000ff>, <rainbow>, <obfuscated> for glitchy letters, <bold> and so on.
+#    <gradient:#ff0000:#0000ff>, <rainbow>, <bold> and so on.
 #    https://docs.advntr.dev/minimessage/format.html
 #
 # `display` is the name in /chatcolor list and menus, it is coloured with the style.
@@ -71,14 +72,42 @@ styles:
     mode: RANDOM
     colors: ["#fff6a8", "#ffd1ff", "#b8f0ff", "#ffffff"]
 
+  # ---- glitch ----
+  # glitch: true gives white letters with a shadow in the colour of the style (see `glitch:` in config.yml).
+  red_glitch:
+    display: "Red Glitch"
+    colors: ["#f13a3a"]
+    glitch: true
+  orange_glitch:
+    display: "Orange Glitch"
+    colors: ["#ff9558"]
+    glitch: true
+  yellow_glitch:
+    display: "Yellow Glitch"
+    colors: ["#ffe05a"]
+    glitch: true
+  green_glitch:
+    display: "Green Glitch"
+    colors: ["#5cf07a"]
+    glitch: true
+  cyan_glitch:
+    display: "Cyan Glitch"
+    colors: ["#3adcf1"]
+    glitch: true
+  blue_glitch:
+    display: "Blue Glitch"
+    colors: ["#3a7af1"]
+    glitch: true
+  purple_glitch:
+    display: "Purple Glitch"
+    colors: ["#a35cf0"]
+    glitch: true
+  rainbow_glitch:
+    display: "Rainbow Glitch"
+    mode: RAINBOW
+    glitch: true
+
   # ---- MiniMessage formats ----
-  # <obfuscated> makes the letters inside it flicker, which gives the glitch look.
-  glitch:
-    display: "Glitch"
-    format: "<gradient:#00ffff:#ff00ff><obfuscated>||</obfuscated> {text} <obfuscated>||</obfuscated></gradient>"
-  glitch_red:
-    display: "Glitch Red"
-    format: "<#ff1744><obfuscated>##</obfuscated> {text} <obfuscated>##</obfuscated>"
   matrix:
     display: "Matrix"
     format: "<#00ff41><obfuscated>0</obfuscated>{text}<obfuscated>1</obfuscated>"
