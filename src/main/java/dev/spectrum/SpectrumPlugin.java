@@ -14,7 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class SpectrumPlugin extends JavaPlugin {
 
-    private Settings settings;
+    // Read from the async chat thread in SpectrumListener, written from the main thread on reload.
+    private volatile Settings settings;
     private Messages messages;
     private StyleService styles;
     private Selections selections;

@@ -39,7 +39,7 @@ final class SpectrumExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getAuthor() {
-        return "Spectrum";
+        return String.join(", ", plugin.getPluginMeta().getAuthors());
     }
 
     @Override

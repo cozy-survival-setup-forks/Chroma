@@ -15,7 +15,7 @@ public final class Hooks {
     private static final Pattern OLD_CODES = Pattern.compile("(?i)[&§](#[0-9a-f]{6}|x(?:[&§][0-9a-f]){6}|[0-9a-fk-or])");
 
     private final SpectrumPlugin plugin;
-    private boolean placeholderApi = false;
+    private volatile boolean placeholderApi = false;
 
     public Hooks(SpectrumPlugin plugin) {
         this.plugin = plugin;
