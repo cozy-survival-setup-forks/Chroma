@@ -58,6 +58,8 @@ Styles with a `format:` are never changed, and glitch only works for chat colour
 colour codes that cannot carry a shadow. Glitch previews in menus (`%spectrum_chat_preview_<id>%`) are written as
 MiniMessage (`<shadow:#f13a3aff><white>text`), so the menu plugin has to read MiniMessage.
 
+In chat the shadow needs the message to stay a component all the way to the player. A plugin that sets the chat format with the old chat event (`AsyncPlayerChatEvent#setFormat`) makes Paper turn the message into a plain string, and the shadow is lost while the colour stays. Tested: with Quill or no formatter the shadow arrives, with a legacy `setFormat` plugin it does not. When a glitch style exists, Spectrum lists the plugins that use the old chat event in the console at startup.
+
 ## Commands
 
 | Command | Use |

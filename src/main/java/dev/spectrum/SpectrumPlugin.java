@@ -3,11 +3,17 @@ package dev.spectrum;
 import dev.spectrum.command.SpectrumCommand;
 import dev.spectrum.command.StyleCommand;
 import dev.spectrum.hook.Hooks;
+import dev.spectrum.style.PaletteStyle;
 import dev.spectrum.style.StyleKind;
 import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Spectrum: colours for chat messages and player names, defined in chatcolors.yml and namegradients.yml.
@@ -50,6 +56,30 @@ public class SpectrumPlugin extends JavaPlugin {
 
         // Players who are already online (after a reload of the plugin).
         for (Player player : Bukkit.getOnlinePlayers()) selections.load(player);
+
+        // Once every plugin is enabled, see who else touches chat the old way.
+        Bukkit.getScheduler().runTask(this, this::warnAboutLegacyChatPlugins);
+    }
+
+    /**
+     * A plugin that sets the chat format through the old AsyncPlayerChatEvent makes Paper turn the message into a
+     * plain string, which drops the shadow of glitch colours. Colours themselves survive, so this only matters when a
+     * glitch style exists.
+     */
+    private void warnAboutLegacyChatPlugins() {
+        boolean glitch = styles.library(StyleKind.CHAT).all().stream()
+                .anyMatch(style -> style instanceof PaletteStyle palette && palette.glitch());
+        if (!glitch) return;
+
+        Set<String> names = new TreeSet<>();
+        for (RegisteredListener listener : AsyncPlayerChatEvent.getHandlerList().getRegisteredListeners()) {
+            if (listener.getPlugin() != this) names.add(listener.getPlugin().getName());
+        }
+        if (!names.isEmpty()) {
+            getLogger().info("Glitch chat colours lose their shadow if one of these plugins changes the chat format through "
+                    + "the old chat event: " + String.join(", ", names) + ". Use a chat formatter that uses Paper's chat "
+                    + "renderer (Quill does) if glitch colours show without the shadow.");
+        }
     }
 
     /** Reloads config.yml, messages.yml and the two style files. */
