@@ -16,6 +16,14 @@ final class PapiSupport {
         return PlaceholderAPI.setPlaceholders(player, text);
     }
 
+    static void install(SpectrumPlugin plugin) {
+        PlayerNameOverride.install(plugin);
+    }
+
+    static void uninstall() {
+        PlayerNameOverride.uninstall();
+    }
+
     static void register(SpectrumPlugin plugin) {
         new SpectrumExpansion(plugin).register();
     }

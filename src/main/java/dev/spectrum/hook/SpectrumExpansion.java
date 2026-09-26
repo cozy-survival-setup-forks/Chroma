@@ -13,7 +13,8 @@ import java.util.Locale;
 /**
  * PlaceholderAPI values. {@code <kind>} is {@code name} or {@code chat}.
  * <pre>
- * %spectrum_name%                        the player's name in their name gradient, as MiniMessage
+ * %spectrum_name%                        the player's name in their name gradient (or with the colours of their nickname), with &amp;#rrggbb codes
+ * %spectrum_realname%                    the player's own name, with no colours
  * %spectrum_name_legacy%                 the same with § codes,  %spectrum_name_amp% with &amp;#rrggbb codes
  * %spectrum_&lt;kind&gt;_id%                   the id of the style the player has active, or "none"
  * %spectrum_&lt;kind&gt;_display%              its name, coloured, as MiniMessage
@@ -58,10 +59,11 @@ final class SpectrumExpansion extends PlaceholderExpansion {
         String request = params.toLowerCase(Locale.ROOT);
 
         if (request.equals("name")) {
-            String name = plugin.hooks().nameOf(player);
-            Style style = plugin.styles().equipped(player, StyleKind.NAME);
-            return style == null ? name : style.ampersand(name);
+            String styled = plugin.hooks().styledName(player);
+            return styled == null ? plugin.hooks().nameOf(player) : styled;
         }
+        // The player's own name, for commands, when %player_name% gives the coloured name
+        if (request.equals("realname")) return player.getName();
 
         for (StyleKind kind : StyleKind.values()) {
             String prefix = kind.key() + "_";

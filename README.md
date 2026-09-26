@@ -87,6 +87,10 @@ Every placeholder gives colours as `&#rrggbb` codes, which DeluxeMenus and most 
 
 **Name gradients** are not applied by Spectrum itself. Put `%spectrum_name%` where the name should go in your chat, tab or scoreboard plugin. A player without a gradient just gets their plain name.
 
+A nickname with colours of its own (a `/nick &e...` with Essentials) is shown as it was typed instead of in the gradient, `nickname-colors-win: false` in `config.yml` puts the gradient on it anyway. `%spectrum_realname%` is the player's own name with no colours.
+
+`override-player-name: true` (the default) also makes PlaceholderAPI's `%player_name%` give the coloured name, for the players who have a gradient or a coloured nickname, so every plugin that uses `%player_name%` shows it. It needs the PlaceholderAPI Player expansion. A menu action like `[console] give %player_name% ...` gets the colour codes as well, use `%spectrum_realname%` there or turn the option off. `%player%` on its own is not a PlaceholderAPI placeholder, so it cannot be changed from here (Quill accepts it in chat formats).
+
 **For menus**, replace `<kind>` with `chat` or `name`:
 
 - `%spectrum_<kind>_id%` and `%spectrum_<kind>_display%`: what the player has equipped
