@@ -53,8 +53,6 @@ public class SpectrumPlugin extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new SpectrumListener(this), this);
         hooks.registerPlaceholders();
-        // PlaceholderAPI has loaded its expansions a moment after every plugin is enabled
-        Bukkit.getScheduler().runTaskLater(this, hooks::takeOverPlayerName, 40L);
 
         // Players who are already online (after a reload of the plugin).
         for (Player player : Bukkit.getOnlinePlayers()) selections.load(player);
@@ -82,11 +80,6 @@ public class SpectrumPlugin extends JavaPlugin {
                     + "the old chat event: " + String.join(", ", names) + ". Use a chat formatter that uses Paper's chat "
                     + "renderer (Quill does) if glitch colours show without the shadow.");
         }
-    }
-
-    @Override
-    public void onDisable() {
-        hooks.giveBackPlayerName();
     }
 
     /** Reloads config.yml, messages.yml and the two style files. */

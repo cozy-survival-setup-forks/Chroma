@@ -29,15 +29,6 @@ public final class Hooks {
         placeholderApi = Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI");
     }
 
-    /** %player_name% is taken over a little later, when PlaceholderAPI has loaded its own expansions. */
-    public void takeOverPlayerName() {
-        if (placeholderApi && plugin.settings().overridePlayerName()) PapiSupport.install(plugin);
-    }
-
-    public void giveBackPlayerName() {
-        if (placeholderApi) PapiSupport.uninstall();
-    }
-
     public void registerPlaceholders() {
         if (placeholderApi) PapiSupport.register(plugin);
     }

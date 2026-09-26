@@ -40,9 +40,3 @@ commands:
 # When the name from name-source has colours of its own (a /nick with &e or a hex colour), those are used and the
 # gradient is left off. Set to false to always put the gradient on the name.
 nickname-colors-win: true
-
-# Makes %player_name% (and everything that uses it) give the coloured name for the players who have a name gradient or
-# a coloured nickname, like %spectrum_name% does. Players without either still get their normal name.
-# The catch: a menu action like [console] give %player_name% then gets the colour codes as well. Use %spectrum_realname%
-# there, or set this to false.
-override-player-name: true

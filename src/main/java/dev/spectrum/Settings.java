@@ -32,11 +32,6 @@ public final class Settings {
         return config.getBoolean("nickname-colors-win", true);
     }
 
-    /** Whether %player_name% gives the coloured name too, for the players who have a gradient or a coloured nickname. */
-    public boolean overridePlayerName() {
-        return config.getBoolean("override-player-name", true);
-    }
-
     /** Whether players with spectrum.chat.codes can write colour codes and MiniMessage in their messages. */
     public boolean allowColorCodes() {
         return config.getBoolean("chat.allow-color-codes", false);
